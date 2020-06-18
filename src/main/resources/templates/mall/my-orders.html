@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="mall/header::head-fragment('GYTong-订单列表','my-orders')">
+</head>
+<body>
+<header th:replace="mall/header::header-fragment"></header>
+<!-- nav -->
+<nav th:replace="mall/header::nav-fragment"></nav>
+
+<!-- personal -->
+<div id="personal">
+    <div class="self-info center">
+
+        <!-- sidebar -->
+        <div th:replace="mall/personal-sidebar::sidebar-fragment"></div>
+        <div class="intro fr">
+            <div class="uc-box uc-main-box">
+                <div class="uc-content-box order-list-box">
+                    <div class="box-hd">
+                        <h1 class="title">我的收藏
+                            <small>请谨防钓鱼链接或诈骗电话，<a href="##">了解更多&gt;</a>
+                            </small>
+                        </h1>
+                    </div>
+                    <div class="box-bd">
+                        <div id="J_orderList">
+                            <th:block th:if="${#lists.isEmpty(myShoppingCartItems)}">
+                                <div class="list center">
+                                    <!-- todo 无购物项时 换背景图 -->
+                                    无数据
+                                </div>
+                            </th:block>
+                            <th:block th:unless="${#lists.isEmpty(myShoppingCartItems)}">
+                                <div class="list center">
+                                    <th:block th:each="item : ${myShoppingCartItems}">
+                                        <div class="content2 center">
+                                            <div class="sub_content cover fl"><img th:src="@{${item.goodsCoverImg}}"></div>
+                                            <div class="yjname" th:text="${item.yjName}"></div>
+                                            <div class="name" th:text="${item.goodsName}"></div>
+                                            <div class="tag" th:text="${item.tag}"></div>
+                                            <div class="info" th:text="${item.goodsIntro}"></div>
+                                            </div>
+                                            <div class="clear"></div>
+                                        </div>
+                                    </th:block>
+                                </div>
+                            </th:block>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+</div>
+
+<div th:replace="mall/footer::footer-fragment"></div>
+
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/mall/js/search.js}" type="text/javascript"></script>
+
+</body>
+</html>

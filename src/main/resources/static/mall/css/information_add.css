@@ -1,0 +1,114 @@
+#infor {
+    display: flex;
+    width: 100%;
+    height: auto;
+    background-color: #f4f6f9;
+    justify-content: center;
+    padding: 25px 0px;
+}
+
+#infor_add {
+    width: 800px;
+    height: 900px;
+    background-color: white;
+    border-top: 3px solid deepskyblue;
+    border-bottom: 3px solid deepskyblue;
+
+}
+
+#infor_add h3 {
+    font-size: 1.35rem;
+    font-weight: 400;
+    text-align: center;
+    margin: 5px 0px 15px 0px;
+}
+
+.form-group{
+    height: 40px;
+    margin-bottom: 1rem;
+    box-sizing: border-box;
+}
+.form-control {
+    display: block;
+    width: 100%;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+    box-shadow: inset 0 0 0 transparent;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.col-sm-3{
+    width: 200px;
+}
+.col-sm-4{
+    width: 220px;
+    height: 200px;
+}
+.col-sm-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+}
+button, input {
+    overflow: visible;
+}
+
+.control-label{
+    font-size: 18px;
+}
+.btn1  {
+    width: 100px;
+    height: 33px;
+    margin-top: 140px;
+    margin-left: 45px;
+}
+.modal-content{
+    height: 250px;
+}
+.btn-info {
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    box-shadow: 0 1px 1px rgba(0,0,0,.075);
+}
+.fa-photo::before, .fa-image::before, .fa-picture-o::before {
+    width: 25px;
+    height: 20px;
+    content: "\f03e";
+}
+.btn{
+    margin-left: 280px;
+    margin-top: 30px;
+    height: 35px;
+    width: 100px;
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    user-select: none;
+    border: 1px solid transparent;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+.btn-info1 {
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #6c757d;
+    box-shadow: 0 1px 1px rgba(0,0,0,.075);
+}
+.btn-info2 {
+    margin-left: 20px;
+    color: #fff;
+    background-color: #17a2b8;
+    border-color: #17a2b8;
+    box-shadow: 0 1px 1px rgba(0,0,0,.075);
+}

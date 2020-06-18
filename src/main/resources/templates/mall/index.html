@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="mall/header::head-fragment('GYTong-首页','index')">
+</head>
+<body>
+<header th:replace="mall/header::header-fragment"></header>
+<content id="content">
+    <nav th:replace="mall/header::nav-fragment"></nav>
+    <div id="banner">
+        <div class="all-sort-list">
+            <th:block th:each="category : ${categories}">
+            <div class="item">
+                <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="##"><th:block th:text="${category.categoryName}"></th:block></a></h2>
+                <div class="item-list clearfix">
+                    <div class="subitem">
+                        <th:block th:each="secondLevelCategory : ${category.secondLevelCategoryVOS}">
+                        <dl class="fore1">
+                            <dt><a href="#"><th:block th:text="${secondLevelCategory.categoryName}"></th:block></a></dt>
+                            <dd>
+                                <th:block th:each="thirdLevelCategory : ${secondLevelCategory.thirdLevelCategoryVOS}">
+                                <em><a href="#"th:href="@{'/search?goodsCategoryId='+${thirdLevelCategory.categoryId}}">
+                                    <th:block th:text="${thirdLevelCategory.categoryName}"></th:block>
+                                </a></em>
+                                </th:block>
+                            </dd>
+                        </dl>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+            </th:block>
+        </div>
+
+        <div class="fr">
+            <!--首页搜索框-->
+            <div class="fr1">
+                <div class="search">
+                    <input class="text" type="text" id="keyword" autocomplete="off">
+                    <div class="search_hot">
+                </div>
+                </div>
+            <div class="button iconfont icon-search" onclick="search()"></div>
+            <!--热门搜索值-->
+            </div>
+            <div class="fr2">
+                <div class="fr2-1">
+                    <i><p>热门关键字:</p></i>
+                    <div class="hot1">
+                        <p>房屋&nbsp;&nbsp;&nbsp;—&nbsp;&nbsp;</p>
+                        <th:block th:each="hotList1 : ${hotList1}">
+                            <em><a href="#"th:href="@{'/search?keyword='+${hotList1.hot_name}}">
+                                <th:block th:text="${hotList1.hot_name}"></th:block>
+                            </a>&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                        </th:block>
+                    </div>
+                    <div class="hot2">
+                        <p>职位&nbsp;&nbsp;&nbsp;—&nbsp;&nbsp;</p>
+                        <th:block th:each="hotList2 : ${hotList2}">
+                            <em><a href="#"th:href="@{'/search?keyword='+${hotList2.hot_name}}">
+                                <th:block th:text="${hotList2.hot_name}"></th:block>
+                            </a>&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                        </th:block>
+                    </div>
+                    <div class="hot3">
+                        <p>二手&nbsp;&nbsp;&nbsp;—&nbsp;&nbsp;</p>
+                        <th:block th:each="hotList3 : ${hotList3}">
+                            <em><a href="#"th:href="@{'/search?keyword='+${hotList3.hot_name}}">
+                                <th:block th:text="${hotList3.hot_name}"></th:block>
+                            </a>&nbsp;&nbsp;&nbsp;&nbsp;</em>
+                        </th:block>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="swiper-container fl">
+            <div class="swiper-wrapper">
+                <!-- 配置了轮播图则显示后台配置的轮播图 -->
+                <th:block th:unless="${#lists.isEmpty(carousels)}">
+                    <th:block th:each="carousel : ${carousels}">
+                        <div class="swiper-slide">
+                            <a th:href="@{${carousel.redirectUrl}}">
+                                <img th:src="@{${carousel.carouselUrl}}" alt="">
+                            </a>
+                        </div>
+                    </th:block>
+                </th:block>
+                <!-- 未配置轮播图则显示默认的三张轮播图 -->
+                <th:block th:if="${#lists.isEmpty(carousels)}">
+                    <div class="swiper-slide">
+                        <img src="./mall/image/swiper/banner01.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="./mall/image/swiper/banner02.jpg" alt="">
+                    </div>
+                    <div class="swiper-slide">
+                        <img src="./mall/image/swiper/banner03.jpg" alt="">
+                    </div>
+                </th:block>
+            </div>
+            <div class="swiper-pagination"></div>
+            <div class="swiper-button-prev"></div>
+            <div class="swiper-button-next"></div>
+        </div>
+    </div>
+    <!-- 热销商品显示
+    <div id="sub_banner">
+
+        <th:block th:unless="${#lists.isEmpty(hotGoodses)}">
+            <th:block th:each="hotGoodse : ${hotGoodses}">
+                <div class="hot-image">
+                    <a th:href="@{'/goods/detail/'+${hotGoodse.goodsId}}">
+                        <img th:src="@{${hotGoodse.goodsCoverImg}}" th:alt="${hotGoodse.goodsName}">
+                    </a>
+                </div>
+            </th:block>
+        </th:block>
+
+        <th:block th:if="${#lists.isEmpty(hotGoodses)}">
+            <div class="hot-image">
+                <a href="##">
+                    <img src="./mall/image/sub_banner/r4.jpg" alt="">
+                </a>
+            </div>
+            <div class="hot-image">
+                <a href="##">
+                    <img src="./mall/image/sub_banner/hot2.jpg" alt="">
+                </a>
+            </div>
+            <div class="hot-image">
+                <a href="##">
+                    <img src="./mall/image/sub_banner/hot3.jpg" alt="">
+                </a>
+            </div>
+            <div class="hot-image">
+                <a href="##">
+                    <img src="./mall/image/sub_banner/hot4.jpg" alt="">
+                </a>
+            </div>
+        </th:block>
+    </div>-->
+    <!-------------------------------------------- 热门出租房----------------------------------->
+    <div id="flash">
+        <h2>热门出租房</h2>
+        <ul>
+            <!-- 已配置新品则显示配置内容 -->
+            <th:block th:unless="${#lists.isEmpty(hot_czf)}">
+                <th:block th:each="newGoods : ${hot_czf}">
+                    <li>
+                        <a th:href="@{'/goods/detail/'+${newGoods.goodsId}}">
+                            <img th:src="@{${newGoods.goodsCoverImg}}" th:alt="${newGoods.goodsName}">
+                            <p class="name" th:text="${newGoods.goodsName}">NewBeeMall</p>
+                            <p class="discount" th:text="${newGoods.tag}">NewBeeMall</p>
+                            <p class="item_price" th:text="${newGoods.sellingPrice}+'元/月'">NewBeeMall</p>
+                        </a>
+                    </li>
+                </th:block>
+            </th:block>
+            <!-- 未配置则显示默认 -->
+            <th:block th:if="${#lists.isEmpty(hot_czf)}">
+            </th:block>
+        </ul>
+    </div>
+    <div id="box1">
+        <img src="./mall/image/swiper/xqph.PNG" alt="">
+    </div>
+
+
+    <!-------------------------------------------- 热门整房----------------------------------->
+    <div id="flash">
+        <h2>热门整房</h2>
+        <ul>
+            <!-- 已配置新品则显示配置内容 -->
+            <th:block th:unless="${#lists.isEmpty(hot_zf)}">
+                <th:block th:each="newGoods : ${hot_zf}">
+                    <li>
+                        <a th:href="@{'/goods/detail/'+${newGoods.goodsId}}">
+                            <img th:src="@{${newGoods.goodsCoverImg}}" th:alt="${newGoods.goodsName}">
+                            <p class="name" th:text="${newGoods.goodsName}">NewBeeMall</p>
+                            <p class="discount" th:text="${newGoods.goodsIntro}">NewBeeMall</p>
+                            <p class="item_price" th:text="${newGoods.sellingPrice}+'万元'">NewBeeMall</p>
+                        </a>
+                    </li>
+                </th:block>
+            </th:block>
+            <!-- 未配置则显示默认 -->
+            <th:block th:if="${#lists.isEmpty(hot_zf)}">
+            </th:block>
+        </ul>
+    </div>
+    <div id="box2">
+        <img src="./mall/image/swiper/fjqs.PNG" alt="">
+    </div>
+
+    <!-------------------------------------------- 热门二手----------------------------------->
+    <div id="recommend">
+        <h2>推荐二手</h2>
+        <a href="##" class="more">查看更多>></a>
+        <ul>
+            <!-- 已配置推荐商品则显示配置内容 -->
+            <th:block th:unless="${#lists.isEmpty(recommendGoodses)}">
+                <th:block th:each="recommendGoods : ${recommendGoodses}">
+                    <li>
+                        <a th:href="@{'/goods/detail/'+${recommendGoods.goodsId}}">
+                            <!--
+                            <div class="info discount" th:text="${recommendGoods.tag}">
+                                新品
+                            </div>-->
+                            <img th:src="@{${recommendGoods.goodsCoverImg}}" th:alt="${recommendGoods.goodsName}">
+                            <p class="name" th:text="${recommendGoods.goodsName}">NewBeeMall</p>
+                            <p class="item_price" th:text="${recommendGoods.sellingPrice}+'元'">NewBeeMall</p>
+                            <p class="counter">猜你喜欢</p>
+                            <div class="comment">
+                                <p>精选二手</p>
+                                <p>好物也可以不贵</p>
+                            </div>
+                        </a>
+                    </li>
+                </th:block>
+            </th:block>
+            <!-- 未配置则显示默认 -->
+            <th:block th:if="${#lists.isEmpty(recommendGoodses)}">
+            </th:block>
+        </ul>
+    </div>
+
+    <!-------------------------------------------- 热门职位----------------------------------->
+    <div id="flash1">
+        <h2>热门职位</h2>
+        <ul>
+            <!-- 已配置新品则显示配置内容 -->
+            <th:block th:unless="${#lists.isEmpty(hot_job)}">
+                <th:block th:each="newGoods : ${hot_job}">
+                    <li>
+                        <a th:href="@{'/goods/detail/'+${newGoods.goodsId}}">
+                          <!--  <img th:src="@{${newGoods.goodsCoverImg}}" th:alt="${newGoods.goodsName}"> -->
+                            <p class="name" th:text="${newGoods.goodsName}">NewBeeMall</p>
+                            <p class="item_price" th:text="${newGoods.sellingPrice}+'元/月'">NewBeeMall</p><br><br>
+                            <p class="tag" th:text="${newGoods.tag}">NewBeeMall</p>
+                            <p class="discount" th:text="${newGoods.goodsIntro}">NewBeeMall</p>
+                        </a>
+                    </li>
+                </th:block>
+            </th:block>
+            <!-- 未配置则显示默认 -->
+            <th:block th:if="${#lists.isEmpty(hot_zf)}">
+            </th:block>
+        </ul>
+    </div>
+</content>
+<div th:replace="mall/footer::footer-fragment"></div>
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/mall/js/search.js}" type="text/javascript"></script>
+<!-- jQuery UI 1.11.4 -->
+<script th:src="@{/admin/plugins/jQueryUI/jquery-ui.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script th:src="@{/mall/js/swiper.min.js}" type="text/javascript"></script>
+<script th:src="@{/admin/plugins/sweetalert/sweetalert.min.js}"></script>
+<script th:src="@{/mall/js/index.js}" type="text/javascript"></script>
+<script th:src="@{/mall/js/search.js}" type="text/javascript"></script>
+</body>
+</html>

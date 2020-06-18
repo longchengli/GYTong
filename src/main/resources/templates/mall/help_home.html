@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="mall/header::head-fragment('GYTong首页','index')">
+
+</head>
+<body>
+<header th:replace="mall/header::header-fragment"></header>
+<div id="main" style="display:flex;justify-content: center;">
+    <div id="msg">
+        <div id="div1">求者大厅</div><hr>
+        <div id="div2">
+            <p>选择求贴分类：</p>
+            <select id="fenlei" onchange="doSome();">
+                <option id="o1" value ="1">租房</option>
+                <option id="o2" value ="2">整房</option>
+                <option id="o3" value ="3">招聘</option>
+                <option id="o4" value ="4">二手</option>
+                <option id="o5" value ="5">宠物</option>
+            </select>
+        </div><hr>
+        <div id="div3">
+            <div class="list">
+                <th:block th:each="item : ${list}">
+                    <div class="content2">
+                        <div class="yjname" th:text="${item.helpName}"></div>
+                        <div class="msg" th:text="${item.helpMsg}"></div>
+                        <div class="phone">
+                            <button>立即联系</button>
+                        </div>
+                    </div>
+                    <div class="clear"></div>
+            </div>
+            </th:block>
+        </div>
+        </div>
+        <div id="div4">
+
+        </div>
+        <div id="div5">
+
+        </div>
+    </div>
+
+</div>
+<div th:replace="mall/footer::footer-fragment"></div>
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<script th:src="@{/mall/js/help_home.js}" type="text/javascript"></script>
+</body>
+</html>

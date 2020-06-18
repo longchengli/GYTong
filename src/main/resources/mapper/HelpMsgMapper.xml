@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ltd.newbee.mall.dao.HelpMsgMapper">
+    <resultMap id="BaseResultMap" type="ltd.newbee.mall.entity.HelpMsg">
+        <id column="help_id" jdbcType="INTEGER" property="helpId" />
+        <result column="help_name" jdbcType="VARCHAR" property="helpName" />
+        <result column="help_msg" jdbcType="VARCHAR" property="helpMsg" />
+        <result column="help_category_id" jdbcType="INTEGER" property="helpCategoryId" />
+        <result column="help_user_id" jdbcType="INTEGER" property="helpUserId" />
+        <result column="help_create_date" jdbcType="TIMESTAMP" property="helpCtrateDate" />
+        <result column="help_state" jdbcType="INTEGER" property="helpState" />
+    </resultMap>
+    <sql id="Base_Column_List">
+    help_id, help_name, help_msg, help_category_id, help_user_id,help_create_date,help_state
+  </sql>
+
+    <select id="findList" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from tb_newbee_mall_help_msg
+        where help_category_id = #{helpCategoryId,jdbcType=INTEGER}
+    </select>
+
+</mapper>

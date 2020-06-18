@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="mall/header::head-fragment('GYTong-首页','index')">
+
+</head>
+<body>
+<header th:replace="mall/header::header-fragment"></header>
+<div id="content">
+    <nav th:replace="mall/header::nav-fragment"></nav>
+    <div id="infor">
+    <div id="infor_add">
+
+    <div class="content-wrapper">
+
+        <div class="content-header">
+            <div class="container-fluid">
+            </div>
+        </div>
+
+        <div class="content">
+            <div class="container-fluid">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">信息发布编辑</h3>
+                    </div>
+                    <div class="card-body">
+                        <form id="goodsForm" onsubmit="return false;">
+                            <div class="form-group" style="display:flex;justify-content: center;">
+                                <label class="control-label">请选择分类:&nbsp;&nbsp;&nbsp;&nbsp;</label>
+                                <select class="form-control col-sm-3" id="levelOne"
+                                        data-placeholder="请选择分类...">
+                                    <th:block th:unless="${null == firstLevelCategories}">
+                                        <th:block th:each="c : ${firstLevelCategories}">
+                                            <option th:value="${c.categoryId}" th:text="${c.categoryName}"
+                                                    th:selected="${null !=firstLevelCategoryId and firstLevelCategoryId==c.categoryId} ?true:false">
+                                                >
+                                            </option>
+                                        </th:block>
+                                    </th:block>
+                                </select>&nbsp;
+                                <select class="form-control col-sm-3"
+                                        id="levelTwo"
+                                        data-placeholder="请选择分类...">
+                                    <th:block th:unless="${null == secondLevelCategories}">
+                                        <th:block th:each="c : ${secondLevelCategories}">
+                                            <option th:value="${c.categoryId}" th:text="${c.categoryName}"
+                                                    th:selected="${null !=secondLevelCategoryId and secondLevelCategoryId==c.categoryId} ?true:false">
+                                                >
+                                            </option>
+                                        </th:block>
+                                    </th:block>
+                                </select>&nbsp;
+                                <select class="form-control col-sm-3"
+                                        id="levelThree"
+                                        data-placeholder="请选择分类...">
+                                    <th:block th:unless="${null == thirdLevelCategories}">
+                                        <th:block th:each="c : ${thirdLevelCategories}">
+                                            <option th:value="${c.categoryId}" th:text="${c.categoryName}"
+                                                    th:selected="${null !=thirdLevelCategoryId and thirdLevelCategoryId==c.categoryId} ?true:false">
+                                                >
+                                            </option>
+                                        </th:block>
+                                    </th:block>
+                                </select>
+                            </div>
+                            <div class="form-group" style="display:flex;justify-content: center;">
+                                <input type="hidden" id="goodsId" name="goodsId"
+                                       th:value="${goods!=null and goods.goodsId!=null }?${goods.goodsId}: 0">
+                                <input type="text" class="form-control col-sm-6" id="goodsName" name="goodsName"
+                                       placeholder="*请输入信息名称(必填)"
+                                       th:value="${goods!=null and goods.goodsName!=null }?${goods.goodsName}: ''"
+                                       required="true">
+                            </div>
+                            <div class="form-group" style="display:flex;justify-content: center;">
+                                <input type="text" class="form-control col-sm-6" id="tag" name="tag"
+                                       placeholder="*请输入信息标签"
+                                       th:value="${goods!=null and goods.tag!=null }?${goods.tag}: ''"
+                                       required="true">
+                            </div>
+                            <div class="form-group" style="display:flex;justify-content: center;">
+                                <input type="number" class="form-control col-sm-6" id="sellingPrice"
+                                       name="sellingPrice"
+                                       placeholder="*请输入信息价值"
+                                       required="true">
+                            </div>
+                            <div class="form-group" style="display:flex;justify-content: center;">
+                                <input type="text" class="form-control col-sm-6" id="goodsIntro" name="goodsIntro"
+                                       placeholder="*请输入商品简介(200字以内)"
+                                       th:value="${goods!=null and goods.goodsIntro!=null }?${goods.goodsIntro}: ''"
+                                       required="true">
+                            </div>
+
+                            <div class="modal-content" style="display:flex;justify-content: center;">
+                                <div class="modal-body">
+                                    <form onsubmit="return false;">
+                                        <div class="form-group">
+                                            <div class="col-sm-4">
+                                                <th:block th:if="${null == goods}">
+                                                    <img id="goodsCoverImg" src="/admin/dist/img/img-upload.png"
+                                                         style="height:180px;width: 200px;">
+                                                </th:block>
+                                                <th:block th:unless="${null == goods}">
+                                                    <img id="goodsCoverImg" th:src="${goods.goodsCoverImg}"
+                                                         style="width:200px ;height: 200px;display:block;">
+                                                </th:block>
+                                            </div>
+                                        </div>
+                                        <br>
+                                        <div class="form-group">
+                                            <div class="col-sm-4">
+                                                <button class="btn1 btn-info" style="margin-bottom: 5px;"
+                                                        id="uploadGoodsCoverImg">上传信息主图
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                            <div class="modal-footer" style="display:flex;">
+                                <button type="button" class="btn btn-info1" id="to_index">返回首页</button>
+                                <button type="button" class="btn btn-info2" id="saveButton">确认发布</button>
+                            </div>
+
+                        </form>
+                    </div>
+
+                </div>
+            </div><!-- /.container-fluid -->
+        </div>
+        <!--
+        <div class="content">
+             模态框（Modal）
+            <div class="modal fade" id="goodsModal" tabindex="-1" role="dialog" aria-labelledby="goodsModalLabel">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                            <h6 class="modal-title" id="goodsModalLabel">信息完善</h6>
+                        </div>
+                        <div class="modal-body">
+                            <form onsubmit="return false;">
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        <th:block th:if="${null == goods}">
+                                            <img id="goodsCoverImg" src="/admin/dist/img/img-upload.png"
+                                                 style="height: 64px;width: 64px;">
+                                        </th:block>
+                                        <th:block th:unless="${null == goods}">
+                                            <img id="goodsCoverImg" th:src="${goods.goodsCoverImg}"
+                                                 style="width:160px ;height: 160px;display:block;">
+                                        </th:block>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="form-group">
+                                    <div class="col-sm-4">
+                                        <button class="btn btn-info" style="margin-bottom: 5px;"
+                                                id="uploadGoodsCoverImg">
+                                            <i class="fa fa-picture-o"></i>&nbsp;上传商品主图
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                            <button type="button" class="btn btn-primary" id="saveButton">确认</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    </div>
+    </div>
+    </div>
+</div>
+
+<div th:replace="mall/footer::footer-fragment"></div>
+<!-- jQuery -->
+<script th:src="@{/admin/plugins/jquery/jquery.min.js}"></script>
+<!-- jQuery UI 1.11.4 -->
+<script th:src="@{/admin/plugins/jQueryUI/jquery-ui.min.js}"></script>
+<!-- Bootstrap 4 -->
+<script th:src="@{/admin/plugins/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<!-- AdminLTE App -->
+<script th:src="@{/admin/dist/js/adminlte.min.js}"></script>
+<!-- sweetalert -->
+<script th:src="@{/admin/plugins/sweetalert/sweetalert.min.js}"></script>
+<!-- ajaxupload -->
+<script th:src="@{/admin/plugins/ajaxupload/ajaxupload.js}"></script>
+<!-- kindeditor -->
+<script th:src="@{/admin/plugins/kindeditor-4.1.10/kindeditor-all.js}"></script>
+<script th:src="@{/admin/plugins/kindeditor-4.1.10/lang/zh_CN.js}"></script>
+<script th:src="@{/admin/dist/js/public.js}"></script>
+<script th:src="@{/mall/js/information_add.js}"></script>
+</body>
+</html>
