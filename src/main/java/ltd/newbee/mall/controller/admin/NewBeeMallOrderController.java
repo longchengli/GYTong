@@ -22,10 +22,6 @@ import java.util.Map;
 import java.util.Objects;
 
 /**
- * @author 13
- * @qq交流群 796794009
- * @email 2449207463@qq.com
- * @link https://github.com/newbee-ltd
  */
 @Controller
 @RequestMapping("/admin")
@@ -88,7 +84,7 @@ public class NewBeeMallOrderController {
     }
 
     /**
-     * 配货
+     *
      */
     @RequestMapping(value = "/orders/checkDone", method = RequestMethod.POST)
     @ResponseBody
@@ -105,7 +101,7 @@ public class NewBeeMallOrderController {
     }
 
     /**
-     * 出库
+     *
      */
     @RequestMapping(value = "/orders/checkOut", method = RequestMethod.POST)
     @ResponseBody
@@ -122,7 +118,7 @@ public class NewBeeMallOrderController {
     }
 
     /**
-     * 关闭订单
+     *
      */
     @RequestMapping(value = "/orders/close", method = RequestMethod.POST)
     @ResponseBody
