@@ -22,9 +22,9 @@ public class Constants {
     public final static int INDEX_GOODS_RECOMMOND_NUMBER = 10;//首页推荐二手数量
     public final static int INDEX_GOODS_JOB_NUMBER = 3;//首页推荐二手数量
 
-    public final static int SHOPPING_CART_ITEM_TOTAL_NUMBER = 13;//购物车中商品的最大数量(可根据自身需求修改)
+    public final static int SHOPPING_CART_ITEM_TOTAL_NUMBER = 13;
 
-    public final static int SHOPPING_CART_ITEM_LIMIT_NUMBER = 5;//购物车中单个商品的最大购买数量(可根据自身需求修改)
+    public final static int SHOPPING_CART_ITEM_LIMIT_NUMBER = 5;
 
     public final static String MALL_VERIFY_CODE_KEY = "mallVerifyCode";//验证码key
 
@@ -32,9 +32,9 @@ public class Constants {
 
     public final static int GOODS_SEARCH_PAGE_LIMIT = 10;//搜索分页的默认条数(每页10条)
 
-    public final static int ORDER_SEARCH_PAGE_LIMIT = 3;//我的订单列表分页的默认条数(每页3条)
+    public final static int ORDER_SEARCH_PAGE_LIMIT = 3;
 
-    public final static int SELL_STATUS_UP = 0;//商品上架状态
-    public final static int SELL_STATUS_DOWN = 1;//商品下架状态
+    public final static int SELL_STATUS_UP = 0;//信息上架状态
+    public final static int SELL_STATUS_DOWN = 1;//信息下架状态
 
 }

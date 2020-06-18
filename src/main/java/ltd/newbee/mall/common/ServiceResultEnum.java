@@ -1,11 +1,6 @@
 package ltd.newbee.mall.common;
 
-/**
- * @author 13
- * @qq交流群 796794009
- * @email 2449207463@qq.com
- * @link https://github.com/newbee-ltd
- */
+
 public enum ServiceResultEnum {
     ERROR("error"),
 
@@ -25,31 +20,31 @@ public enum ServiceResultEnum {
 
     LOGIN_VERIFY_CODE_ERROR("验证码错误！"),
 
-    GOODS_NOT_EXIST("商品不存在！"),
+    GOODS_NOT_EXIST("信息不存在！"),
 
-    GOODS_PUT_DOWN("商品已下架！"),
+    GOODS_PUT_DOWN("信息已下架！"),
 
-    SHOPPING_CART_ITEM_LIMIT_NUMBER_ERROR("超出单个商品的最大购买数量！"),
+    SHOPPING_CART_ITEM_LIMIT_NUMBER_ERROR("超出最大数量！"),
 
-    SHOPPING_CART_ITEM_TOTAL_NUMBER_ERROR("超出购物车最大容量！"),
+    SHOPPING_CART_ITEM_TOTAL_NUMBER_ERROR("超出最大容量！"),
 
     LOGIN_ERROR("登录失败！"),
 
     LOGIN_USER_LOCKED("用户已被禁止登录！"),
 
-    ORDER_NOT_EXIST_ERROR("订单不存在！"),
+    ORDER_NOT_EXIST_ERROR("用户不存在！"),
 
-    NULL_ADDRESS_ERROR("地址不能为空！"),
+    NULL_ADDRESS_ERROR("信息不能为空！"),
 
-    ORDER_PRICE_ERROR("订单价格异常！"),
+    ORDER_PRICE_ERROR("异常！"),
 
-    ORDER_GENERATE_ERROR("生成订单异常！"),
+    ORDER_GENERATE_ERROR("异常！"),
 
-    SHOPPING_ITEM_ERROR("购物车数据异常！"),
+    SHOPPING_ITEM_ERROR("数据异常！"),
 
-    SHOPPING_ITEM_COUNT_ERROR("库存不足！"),
+    SHOPPING_ITEM_COUNT_ERROR(""),
 
-    ORDER_STATUS_ERROR("订单状态异常！"),
+    ORDER_STATUS_ERROR("状态异常！"),
 
     OPERATE_ERROR("操作失败！"),
 
