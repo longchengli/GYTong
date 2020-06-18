@@ -4,10 +4,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * @author 13
- * @qq交流群 796794009
- * @email 2449207463@qq.com
- * @link https://github.com/newbee-ltd
+ * 数字类工具
  */
 public class NumberUtil {
 
@@ -45,11 +42,7 @@ public class NumberUtil {
         return (int) ((random * num));
     }
 
-    /**
-     * 生成订单流水号
-     *
-     * @return
-     */
+
     public static String genOrderNo() {
         StringBuffer buffer = new StringBuffer(String.valueOf(System.currentTimeMillis()));
         int num = genRandomNum(4);
