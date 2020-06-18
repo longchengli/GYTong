@@ -4,9 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-/**
- * 订单详情页页面VO
- */
+
 public class NewBeeMallOrderDetailVO implements Serializable {
 
     private String orderNo;

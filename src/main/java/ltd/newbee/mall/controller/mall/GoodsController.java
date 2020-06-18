@@ -56,13 +56,13 @@ public class GoodsController {
         }
         request.setAttribute("keyword", keyword);
         params.put("keyword", keyword);
-        //封装商品数据
+        //封装数据
         PageQueryUtil pageUtil = new PageQueryUtil(params);
         request.setAttribute("pageResult", newBeeMallGoodsService.searchNewBeeMallGoods(pageUtil));
         return "mall/search";
     }
 
-    //商品详情页面
+    //详情页面
     @GetMapping("/goods/detail/{goodsId}")
     public String detailPage(@PathVariable("goodsId") Long goodsId, HttpServletRequest request) {
         if (goodsId < 1) {

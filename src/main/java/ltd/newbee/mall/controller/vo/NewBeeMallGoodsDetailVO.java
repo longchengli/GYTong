@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.List;
 
 /**
- * 商品详情页VO
+ * 详情页VO
  */
 public class NewBeeMallGoodsDetailVO implements Serializable {
 

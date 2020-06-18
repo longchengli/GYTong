@@ -2,9 +2,6 @@ package ltd.newbee.mall.controller.vo;
 
 import java.io.Serializable;
 
-/**
- * 订单详情页页面订单项VO
- */
 public class NewBeeMallOrderItemVO implements Serializable {
 
     private Long goodsId;

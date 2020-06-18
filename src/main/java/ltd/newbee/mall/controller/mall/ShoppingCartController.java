@@ -24,7 +24,6 @@ public class ShoppingCartController {
     @Resource
     private NewBeeMallShoppingCartService newBeeMallShoppingCartService;
 
-    //点击个人中心、我的订单时调用
     @GetMapping("/orders")
     public String cartListPage(HttpServletRequest request,
                                HttpSession httpSession) {
@@ -33,12 +32,10 @@ public class ShoppingCartController {
         int priceTotal = 0;
         List<NewBeeMallShoppingCartItemVO> myShoppingCartItems = newBeeMallShoppingCartService.getMyShoppingCartItems(user.getUserId());
         if (!CollectionUtils.isEmpty(myShoppingCartItems)) {
-            //购物项总数
             itemsTotal = myShoppingCartItems.stream().mapToInt(NewBeeMallShoppingCartItemVO::getGoodsCount).sum();
             if (itemsTotal < 1) {
                 return "error/error_5xx";
             }
-            //总价
             for (NewBeeMallShoppingCartItemVO newBeeMallShoppingCartItemVO : myShoppingCartItems) {
                 priceTotal += newBeeMallShoppingCartItemVO.getGoodsCount() * newBeeMallShoppingCartItemVO.getSellingPrice();
             }
@@ -58,13 +55,10 @@ public class ShoppingCartController {
                                                  HttpSession httpSession) {
         NewBeeMallUserVO user = (NewBeeMallUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
         newBeeMallShoppingCartItem.setUserId(user.getUserId());
-        //todo 判断数量
         String saveResult = newBeeMallShoppingCartService.saveNewBeeMallCartItem(newBeeMallShoppingCartItem);
-        //添加成功
         if (ServiceResultEnum.SUCCESS.getResult().equals(saveResult)) {
             return ResultGenerator.genSuccessResult();
         }
-        //添加失败
         return ResultGenerator.genFailResult(saveResult);
     }
 
@@ -74,13 +68,10 @@ public class ShoppingCartController {
                                                    HttpSession httpSession) {
         NewBeeMallUserVO user = (NewBeeMallUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
         newBeeMallShoppingCartItem.setUserId(user.getUserId());
-        //todo 判断数量
         String updateResult = newBeeMallShoppingCartService.updateNewBeeMallCartItem(newBeeMallShoppingCartItem);
-        //修改成功
         if (ServiceResultEnum.SUCCESS.getResult().equals(updateResult)) {
             return ResultGenerator.genSuccessResult();
         }
-        //修改失败
         return ResultGenerator.genFailResult(updateResult);
     }
 
@@ -90,11 +81,9 @@ public class ShoppingCartController {
                                                    HttpSession httpSession) {
         NewBeeMallUserVO user = (NewBeeMallUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
         Boolean deleteResult = newBeeMallShoppingCartService.deleteById(newBeeMallShoppingCartItemId);
-        //删除成功
         if (deleteResult) {
             return ResultGenerator.genSuccessResult();
         }
-        //删除失败
         return ResultGenerator.genFailResult(ServiceResultEnum.OPERATE_ERROR.getResult());
     }
 
@@ -105,10 +94,8 @@ public class ShoppingCartController {
         NewBeeMallUserVO user = (NewBeeMallUserVO) httpSession.getAttribute(Constants.MALL_USER_SESSION_KEY);
         List<NewBeeMallShoppingCartItemVO> myShoppingCartItems = newBeeMallShoppingCartService.getMyShoppingCartItems(user.getUserId());
         if (CollectionUtils.isEmpty(myShoppingCartItems)) {
-            //无数据则不跳转至结算页
             return "/shop-cart";
         } else {
-            //总价
             for (NewBeeMallShoppingCartItemVO newBeeMallShoppingCartItemVO : myShoppingCartItems) {
                 priceTotal += newBeeMallShoppingCartItemVO.getGoodsCount() * newBeeMallShoppingCartItemVO.getSellingPrice();
             }

@@ -3,7 +3,7 @@ package ltd.newbee.mall.controller.vo;
 import java.io.Serializable;
 
 /**
- * 搜索列表页商品VO
+ * 搜索列表页VO
  */
 public class NewBeeMallSearchGoodsVO implements Serializable {
 

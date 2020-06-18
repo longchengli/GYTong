@@ -4,9 +4,7 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-/**
- * 订单列表页面VO
- */
+
 public class NewBeeMallOrderListVO implements Serializable {
 
     private Long orderId;

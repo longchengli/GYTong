@@ -2,9 +2,7 @@ package ltd.newbee.mall.controller.vo;
 
 import java.io.Serializable;
 
-/**
- * 购物车页面购物项VO
- */
+
 public class NewBeeMallShoppingCartItemVO implements Serializable {
 
     private Long cartItemId;
