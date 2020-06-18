@@ -27,13 +27,13 @@ public class NeeBeeMallWebMvcConfigurer implements WebMvcConfigurer {
                 .excludePathPatterns("/admin/login")
                 .excludePathPatterns("/admin/dist/**")
                 .excludePathPatterns("/admin/plugins/**");
-        // 购物车中的数量统一处理
+
         registry.addInterceptor(newBeeMallCartNumberInterceptor)
                 .excludePathPatterns("/admin/**")
                 .excludePathPatterns("/register")
                 .excludePathPatterns("/login")
                 .excludePathPatterns("/logout");
-        // 商城页面登陆拦截
+        // 需要登录才能浏览的页面登陆拦截
         registry.addInterceptor(newBeeMallLoginInterceptor)
                 .excludePathPatterns("/admin/**")
                 .excludePathPatterns("/register")
